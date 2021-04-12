@@ -20,6 +20,20 @@
 <script>
 var textElement = document.getElementById("note")
 
+//initialize array
+let notes = [];
+
+//note class
+function Note(item) {
+    this.item = item;
+}
+
+//add a new note
+function addNote(item) {
+    let n = new Note(item);
+    notes.push(n);
+}
+
 function saveNote() {
     
 }
