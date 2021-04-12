@@ -13,6 +13,9 @@
             <button id="submit" onclick="saveNote()" class="submit">Save Note</button>
         <div class="notes-link">
             <a href="index2.html" >View Notes</a>
+            <ol id="notes-list">
+
+            </ol>
         </div> 
     </div>
 </body>
@@ -32,9 +35,42 @@ function Note(item) {
 function addNote(item) {
     let n = new Note(item);
     notes.push(n);
+    saveNote();
 }
 
+// addNote('a new note');
+// addNote('another note');
+
 function saveNote() {
-    
+    // if (textElement.value === "") {
+    //     alert("Please add a note");
+    // }
+    let str = JSON.stringify(notes);
+    localStorage.setItem("notes", str );
 }
+
+function getNotes() {
+    let str = localStorage.getItem("notes");
+    notes = JSON.parse(str);
+    if (!notes) {
+        notes = [];
+    }
+}
+
+getNotes();
+listNotes();
+
+function listNotes() {
+    for (i = 0; i < notes.length; i++) {
+        let note = notes[i];
+        let item = note.item;
+        console.log(notes[i].item);
+        let li = document.createElement('li');
+        li.innerText = item;  
+        document.getElementById('notes-list').appendChild(li);
+    }
+}
+
+listNotes();
+
 </script>
